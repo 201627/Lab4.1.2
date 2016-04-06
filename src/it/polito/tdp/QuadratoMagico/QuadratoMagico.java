@@ -23,7 +23,7 @@ public class QuadratoMagico {
 	public QuadratoMagico(int n) {
 		
 		N = n;
-		magico = 1/2*n*(n*n+1);
+		magico = n*(n*n + 1)/2;
 		caselle = new HashMap<Posizione, Integer>();
 		posizioni = new ArrayList<Posizione>();
 		valori = new ArrayList<Integer>();
@@ -60,8 +60,8 @@ public class QuadratoMagico {
 	public void set(Posizione p, int i){
 		if (caselle.get(p)== null){
 			caselle.put(p, i);
-			sommaRighe.set(p.getRiga(), sommaRighe.get(p.getRiga()+ i));
-			sommaCol.set(p.getCol(), sommaCol.get(p.getCol()+ i));
+			sommaRighe.set(p.getRiga(), sommaRighe.get(p.getRiga())+i);
+			sommaCol.set(p.getCol(), sommaCol.get(p.getCol()) + i);
 			if(p.getRiga()==p.getCol()){
 				sommaDiag[0]+=i;
 			}else if(p.getRiga()== N - 1 - p.getCol()){
@@ -75,8 +75,8 @@ public class QuadratoMagico {
 		if (caselle.get(p)!= null){
 			int i = caselle.get(p);
 			caselle.remove(p);
-			sommaRighe.set(p.getRiga(), sommaRighe.get(p.getRiga() - i ));
-			sommaCol.set(p.getCol(), sommaRighe.get(p.getCol() - i));
+			sommaRighe.set(p.getRiga(), sommaRighe.get(p.getRiga())- i );
+			sommaCol.set(p.getCol(), sommaRighe.get(p.getCol()) - i);
 			if(p.getRiga()==p.getCol()){
 				sommaDiag[0]-=i;
 			}else if(p.getRiga()== N - 1 - p.getCol()){
@@ -127,6 +127,10 @@ public class QuadratoMagico {
 	
 	public int getLato(){
 		return N;
+	}
+
+	public Map<Posizione, Integer> getCaselle() {
+		return caselle;
 	}
 	
 }
